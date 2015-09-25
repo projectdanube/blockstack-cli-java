@@ -1,6 +1,6 @@
-## Blockstore Client (Java)
-
 <a href="http://projectdanube.org/" target="_blank"><img src="http://projectdanube.github.com/xdi2/images/projectdanube_logo.png" align="right"></a>
+
+## Blockstore Client (Java)
 
 This is a **work-in-progress** Java client library for [Blockstore](https://github.com/blockstack/blockstore/). Pull requests welcome.
 
