@@ -1,24 +1,19 @@
-<a href="http://projectdanube.org/" target="_blank"><img src="http://projectdanube.github.com/xdi2/images/projectdanube_logo.png" align="right"></a>
-<br>
-
 ## Blockstore Client (Java)
 
-This is a **work-in-progress** Java client library for [Blockstore](https://github.com/blockstack/blockstore/).
+<a href="http://projectdanube.org/" target="_blank"><img src="http://projectdanube.github.com/xdi2/images/projectdanube_logo.png" align="right"></a>
+
+This is a **work-in-progress** Java client library for [Blockstore](https://github.com/blockstack/blockstore/). Pull requests welcome.
 
 This is modeled after a snapshot commit of the Python [Blockstore Client](https://github.com/blockstack/blockstore-client) and should not be considered stable! This is able to communicate with
 a running instance of Blockstore, but it cannot currently query the DHT.
 
 **Not ready for production use! Not all commands work properly! Use at your own risk!**
 
-Pull requests welcome.
-
 ### How to build
 
 Just run
 
     mvn clean install
-
-to build.
 
 ### Example use
 
