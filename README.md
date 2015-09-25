@@ -4,8 +4,8 @@
 
 This is a **work-in-progress** Java client library for [Blockstore](https://github.com/blockstack/blockstore/). Pull requests welcome.
 
-This is modeled after a snapshot commit of the Python [Blockstore Client](https://github.com/blockstack/blockstore-client) and should not be considered stable! This is able to communicate with
-a running instance of Blockstore, but it cannot currently query the DHT.
+This is modeled after a snapshot version of the Python [Blockstore Client](https://github.com/blockstack/blockstore-client) and should not be considered stable! This is able to communicate with
+a running instance of Blockstore, but it cannot currently query the DHT or other store of name records.
 
 **Not ready for production use! Not all commands work properly! Use at your own risk!**
 
