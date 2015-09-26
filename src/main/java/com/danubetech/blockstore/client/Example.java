@@ -1,4 +1,4 @@
-package org.projectdanube.blockstore.client;
+package com.danubetech.blockstore.client;
 
 public class Example {
 

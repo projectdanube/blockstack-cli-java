@@ -1,9 +1,10 @@
-package org.projectdanube.blockstore.client;
+package com.danubetech.blockstore.client;
 
 import java.io.IOException;
 
 import org.json.simple.JSONObject;
-import org.projectdanube.blockstore.client.jsonrpc.JSONRPCClient;
+
+import com.danubetech.blockstore.client.jsonrpc.JSONRPCClient;
 
 public class BasicDHTMirrorClient extends JSONRPCClient implements DHTClient {
 

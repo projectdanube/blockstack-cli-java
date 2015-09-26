@@ -1,4 +1,4 @@
-package org.projectdanube.blockstore.client.jsonrpc;
+package com.danubetech.blockstore.client.jsonrpc;
 
 import java.io.IOException;
 import java.io.Reader;
