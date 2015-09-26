@@ -34,7 +34,7 @@ Just run
 		}
 	}
 
-Response:
+Output:
 
 	{"status":"alive"}
 	{"first_registered":374085,"sender":"76a914358751cbc593450619bff9b03cd0698154a8a0fe88ac","sender_pubkey":"02eb1a3612b9e29b1770e76916a6226f72fc32025bab8061c5298483378f4b31f7","address":"15t2vLF87xZogitNRLzQSih5Kz18XWBMS1","value_hash":"dfe6e3f40a770c90fd8158f9c28c950631c4818b","last_renewed":374085,"revoked":false}
