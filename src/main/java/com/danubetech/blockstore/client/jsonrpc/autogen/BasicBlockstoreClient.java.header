@@ -1,0 +1,16 @@
+package com.danubetech.blockstore.client;
+
+import java.io.IOException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.danubetech.blockstore.client.jsonrpc.JSONRPCClient;
+
+public class BasicBlockstoreClient extends JSONRPCClient implements BlockstoreClient {
+
+	public BasicBlockstoreClient(String server, Integer port) {
+
+		super(server, port);
+	}
+

@@ -1,0 +1,2 @@
+    def jsonrpc_ping(self):
+    def jsonrpc_get(self, key):

@@ -13,14 +13,3 @@ public class BasicDHTMirrorClient extends JSONRPCClient implements DHTClient {
 		super(server, port);
 	}
 
-	@Override
-	public JSONObject ping() throws IOException {
-		return this.sendAndExpectJSONObject("ping", new Object[] {  });
-	}
-
-	@Override
-	public JSONObject get(String key) throws IOException {
-		return this.sendAndExpectJSONObject("get", new Object[] { key });
-	}
-
-}

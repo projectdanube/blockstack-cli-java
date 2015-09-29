@@ -1,0 +1,35 @@
+    def jsonrpc_ping(self):
+    def jsonrpc_get_name_blockchain_record(self, name):
+    def jsonrpc_getinfo(self):
+    def jsonrpc_preorder( self, name, privatekey, register_addr ):
+    def jsonrpc_preorder_tx( self, name, privatekey, register_addr ):
+    def jsonrpc_preorder_tx_subsidized( self, name, public_key, register_addr, subsidy_key ):
+    def jsonrpc_register( self, name, privatekey, register_addr ):
+    def jsonrpc_register_tx( self, name, privatekey, register_addr ):
+    def jsonrpc_register_tx_subsidized( self, name, public_key, register_addr, subsidy_key ):
+    def jsonrpc_update( self, name, data_hash, privatekey ):
+    def jsonrpc_update_tx( self, name, data_hash, privatekey ):
+    def jsonrpc_update_tx_subsidized( self, name, data_hash, public_key, subsidy_key ):
+    def jsonrpc_transfer( self, name, address, keepdata, privatekey ):
+    def jsonrpc_transfer_tx( self, name, address, keepdata, privatekey ):
+    def jsonrpc_transfer_tx_subsidized( self, name, address, keepdata, public_key, subsidy_key ):
+    def jsonrpc_renew( self, name, privatekey ):
+    def jsonrpc_renew_tx( self, name, privatekey ):
+    def jsonrpc_renew_tx_subsidized( self, name, public_key, subsidy_key ):
+    def jsonrpc_revoke( self, name, privatekey ):
+    def jsonrpc_revoke_tx( self, name, privatekey ):
+    def jsonrpc_revoke_tx_subsidized( self, name, public_key, subsidy_key ):
+    def jsonrpc_name_import( self, name, recipient_address, update_hash, privatekey ):
+    def jsonrpc_name_import_tx( self, name, recipient_address, update_hash, privatekey ):
+    def jsonrpc_namespace_preorder( self, namespace_id, reveal_addr, privatekey ):
+    def jsonrpc_namespace_preorder_tx( self, namespace_id, reveal_addr, privatekey ):
+    def jsonrpc_namespace_reveal( self, namespace_id, reveal_addr, lifetime, coeff, base, bucket_exponents, nonalpha_discount, no_vowel_discount, privatekey ):
+    def jsonrpc_namespace_reveal_tx( self, namespace_id, reveal_addr, lifetime, coeff, base, bucket_exponents, nonalpha_discount, no_vowel_discount, privatekey ):
+    def jsonrpc_namespace_ready( self, namespace_id, privatekey ):
+    def jsonrpc_namespace_ready_tx( self, namespace_id, privatekey ):
+    def jsonrpc_get_name_cost( self, name ):
+    def jsonrpc_get_namespace_cost( self, namespace_id ):
+    def jsonrpc_get_namespace_blockchain_record( self, namespace_id ):
+    def jsonrpc_get_all_names( self, offset, count ):
+    def jsonrpc_get_names_in_namespace( self, namespace_id, offset, count ):
+    def jsonrpc_get_consensus_at( self, block_id ):
