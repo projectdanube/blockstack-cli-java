@@ -7,6 +7,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.UUID;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONAware;
@@ -40,19 +41,21 @@ public abstract class JSONRPCClient {
 
 		// send request
 
-		writer.write(NotQuiteJSONRPC.netstringRequest(method, params));
+		String id = UUID.randomUUID().toString();
+
+		writer.write(NotQuiteJSONRPC.netstringRequest(id, method, params));
 		writer.flush();
 
 		// parse response
 
-		JSONAware jsonAware;
+		JSONObject jsonResponse;
 
 		try {
 
 			Object object = PARSER.parse(NotQuiteJSONRPC.netstringResponse(reader));
-			if (! (object instanceof JSONAware)) throw new IOException("Not a JSON response: " + object.getClass().getSimpleName());
+			if (! (object instanceof JSONObject)) throw new IOException("Not a JSON object response: " + object.getClass().getSimpleName());
 
-			jsonAware = (JSONAware) object;
+			jsonResponse = (JSONObject) object;
 		} catch (ParseException ex) {
 
 			throw new IOException("Parsing error: " + ex.getMessage(), ex);
@@ -63,11 +66,26 @@ public abstract class JSONRPCClient {
 			socket.close();
 		}
 
+		// check response
+
+		JSONAware jsonResult;
+
+		if (! "2.0".equals((jsonResponse).get("jsonrpc"))) throw new IOException("Invalid JSON RPC response version: " + jsonResponse.get("jsonrpc"));
+		if (! id.equals((jsonResponse).get("id"))) throw new IOException("Invalid JSON RPC response ID: " + jsonResponse.get("id"));
+		if (! (jsonResponse.get("result") instanceof JSONAware)) throw new IOException("Invalid JSON RPC result: " + jsonResponse.get("result"));
+
+		jsonResult = (JSONAware) jsonResponse.get("result");
+
 		// check for error
 
-		if (jsonAware instanceof JSONObject) {
+		if (jsonResult instanceof JSONArray && ((JSONArray) jsonResult).size() == 1 && ((JSONArray) jsonResult).get(0) instanceof JSONObject) {
 
-			JSONObject jsonObject = (JSONObject) jsonAware;
+			jsonResult = (JSONObject) ((JSONArray) jsonResult).get(0);
+		}
+
+		if (jsonResult instanceof JSONObject) {
+
+			JSONObject jsonObject = (JSONObject) jsonResult;
 
 			if (jsonObject.containsKey("fault") || jsonObject.containsKey("faultCode") || jsonObject.containsKey("faultString") || jsonObject.containsKey("error")) {
 
@@ -75,9 +93,10 @@ public abstract class JSONRPCClient {
 				if (jsonObject.containsKey("fault")) errorString.append(jsonObject.get("fault") + " ");
 				if (jsonObject.containsKey("faultCode")) errorString.append(jsonObject.get("faultCode") + " ");
 				if (jsonObject.containsKey("faultString")) errorString.append(jsonObject.get("faultString") + " ");
-				if (jsonObject.containsKey("error") && ((JSONObject) jsonObject.get("error")).containsKey("code")) errorString.append(((JSONObject) jsonObject.get("error")).get("code") + " ");
-				if (jsonObject.containsKey("error") && ((JSONObject) jsonObject.get("error")).containsKey("message")) errorString.append(((JSONObject) jsonObject.get("error")).get("message") + " ");
-				if (jsonObject.containsKey("error") && ((JSONObject) jsonObject.get("error")).containsKey("data")) errorString.append(((JSONObject) jsonObject.get("error")).get("data") + " ");
+				if (jsonObject.containsKey("error") && jsonObject.get("error") instanceof String) errorString.append(jsonObject.get("error") + " ");
+				if (jsonObject.containsKey("error") && jsonObject.get("error") instanceof JSONObject && ((JSONObject) jsonObject.get("error")).containsKey("code")) errorString.append(((JSONObject) jsonObject.get("error")).get("code") + " ");
+				if (jsonObject.containsKey("error") && jsonObject.get("error") instanceof JSONObject && ((JSONObject) jsonObject.get("error")).containsKey("message")) errorString.append(((JSONObject) jsonObject.get("error")).get("message") + " ");
+				if (jsonObject.containsKey("error") && jsonObject.get("error") instanceof JSONObject && ((JSONObject) jsonObject.get("error")).containsKey("data")) errorString.append(((JSONObject) jsonObject.get("error")).get("data") + " ");
 
 				throw new IOException("Error response: " + errorString.toString());
 			}
@@ -85,7 +104,7 @@ public abstract class JSONRPCClient {
 
 		// done
 
-		return jsonAware;
+		return jsonResponse;
 	}
 
 	protected JSONObject sendAndExpectJSONObject(String method, Object[] params) throws IOException {

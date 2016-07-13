@@ -5,7 +5,7 @@ public class Example {
 	public static void main(String[] args) throws Exception {
 
 		BlockstoreClient blockstoreClient = new BasicBlockstoreClient("localhost", Integer.valueOf(6264));
-		DHTClient dhtClient = new BasicDHTMirrorClient("dht.blockstack.org", Integer.valueOf(6266));
+		DHTClient dhtClient = new BasicDHTMirrorClient("mirror.blockstack.org", Integer.valueOf(6266));
 
 		System.out.println(blockstoreClient.ping());
 		System.out.println(blockstoreClient.getNameBlockchainRecord("christophera.id"));

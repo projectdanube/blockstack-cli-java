@@ -17,14 +17,14 @@ public class NotQuiteJSONRPC {
 	private static final String JSONRPC_VERSION = "2.0";
 
 	@SuppressWarnings("unchecked")
-	public static String netstringRequest(String method, Object[] params) {
+	public static String netstringRequest(String id, String method, Object[] params) {
 
 		JSONArray jsonArray = new JSONArray();
 		for (Object param : params) if (param != null) jsonArray.add(param);
 
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("version", JSONRPC_VERSION);
-		jsonObject.put("id", UUID.randomUUID().toString());
+		jsonObject.put("id", id);
 		jsonObject.put("method", method);
 		jsonObject.put("params", jsonArray);
 
